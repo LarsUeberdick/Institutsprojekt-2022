@@ -2,20 +2,15 @@
 #include <vector>
 
 //Methods
-const std::vector<int>& Objects::GetCoordinates(){
+const std::vector<float>& Objects::GetCoordinates(){
 	return coordinates;
-}
-
-const float Objects::GetMass()
-{
-	return mass;
 }
 
 //Constructor
 Objects::Objects(QObject* parent) 
 	: QObject(parent){}
 
-Objects::Objects(QObject* parent, std::vector<int>& c)
+Objects::Objects(QObject* parent, std::vector<float>& c)
 	: QObject(parent){
 	for (auto i = 0; i < c.size(); i++) {
 		coordinates[i] = c[i];

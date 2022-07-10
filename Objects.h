@@ -8,22 +8,19 @@ class Objects : public QObject
 {
 	Q_OBJECT
 
-	std::vector<int> coordinates(3);
-	//std::vector<int> angles(3);
-	float mass;
-	
+	std::vector<float> coordinates(3);
+	//std::vector<float> angles(3);	
 
 public:
 	//Methods
-	const std::vector<int>& GetCoordinates();
-	//const std::vector<int>& GetAngles();
-	const float GetMass();
+	const std::vector<float>& GetCoordinates();
+	//const std::vector<float>& GetAngles();
 
 	//Constructor
 	//Only for text cases; should not be in final itteration
 	Objects(QObject*);
 
-	Objects(QObject*, std::vector<int> c) //, std::vector<int> a
+	Objects(QObject*, std::vector<float> c) //, std::vector<float> a
 	~Objects();
 };
 

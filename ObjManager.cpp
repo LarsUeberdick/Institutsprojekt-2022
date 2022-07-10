@@ -17,14 +17,15 @@ void ObjManager::RemoveObj(Objects* object)
 
 void ObjManager::Step(float dt)
 {
+	//Only simulates non control forces as of now
+
 	for (ControllableObj* cObj : ObjList) {
-		//This line needs the input force on the obj
 		cObj->SetForce(cObj->GetForce() + cObj->GetMass() * gravity);
 
 		cObj->SetVelocity(cObj->GetForce() / cObj->GetMass() * dt);
 		cObj->SetCoordinates(cObj->GetCoordinates() + cObj->GetVelocity() * dt);
 
-		cObj->SetForce(std::vector<int>(0, 0, 0));
+		cObj->SetForce(std::vector<float>(0, 0, 0));
 	}
 }
 
