@@ -8,19 +8,19 @@ class Objects : public QObject
 {
 	Q_OBJECT
 
-	std::vector<float> coordinates(3);
-	//std::vector<float> angles(3);	
+	std::vector<float> Coordinates(3);
+	std::vector<float> Facing(2); //theta, phi
+	//collider; definiert räumliche Ausdehnung, Liste, da Elemente konvex sein müssen
 
 public:
 	//Methods
 	const std::vector<float>& GetCoordinates();
-	//const std::vector<float>& GetAngles();
+	const std::vector<float>& GetFacing();
 
 	//Constructor
-	//Only for text cases; should not be in final itteration
+	//Only for test cases; should not be in final itteration
 	Objects(QObject*);
-
-	Objects(QObject*, std::vector<float> c) //, std::vector<float> a
+	Objects(QObject* parent, std::vector<float> c, std::vector<float> f);
 	~Objects();
 };
 
