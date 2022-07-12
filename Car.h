@@ -5,24 +5,28 @@
 
 class Car : public ControllableObj
 {
-	float WheelPos;						//Pos of adjustable wheels -45 to 45 degree
-	std::vector<float> FrontWheels;		//Coordinates relativ to Obj Pos
-	std::vector<float> BackWheels;		//Coordinates relativ to Obj Pos
-public:
+	float WheelAngle;					//Pos of adjustable wheels -45 to 45 degree
+	float WheelBase;
+	const float PI{ 3,1415 };
 
+public:
 	//Methoden
-	void SetWheelPos(const float);
-	int GetWheelPos();
-	std::vector<float>& CompCalc();
-	virtual void Accelarate(const float) override;
-	virtual void Brake(const float) override;
-	virtual void Turn(float) override;
-	virtual void UpdatePosFacing(float) override;
+	//redundant to Turn?
+	void SetWheelAngle(const float);
+	
+	const float GetWheelAngle();
+	const float GetWheelBase();
+
+	//override Methoden		
+	virtual void Accelarate(const float strength) override;
+	virtual void Brake(const float strength) override;
+	virtual void Turn(const float direction) override;
+	virtual void Update(const float) override;
 
 	//Constructor
 	//Standardconstructor should only be used for testing
 	Car(QObject* parent); // = delete;
-	Car(QObject* parent, std::vector<float> c, std::vector<float> f, std::vector<float> fw, std::vector<float> bw);
+	Car(QObject* parent, std::vector<float>& coordinates, std::vector<float>& orientation, const float wheelbase);
 	~Car();
 };
 

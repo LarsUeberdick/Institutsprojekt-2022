@@ -10,27 +10,36 @@ class ControllableObj : public Objects
 
 	std::vector<float> Velocity(3);
 	std::vector<float> Force(3);
+	float AccForce;
+	float BreakForce;
 	float Mass;
 
 public:
 	//Methods
-	void SetCoordinates(const std::vector<float>& c);
 	void SetVelocity(const std::vector<float>& v);
-	std::vector<float>& GetVelocity();
-
+	const std::vector<float>& GetVelocity();
 	void SetForce(const std::vector<float>& f);
-	std::vector<float> GetForce();
+	const std::vector<float>& GetForce();
+	void SetAccForce(const float accForce);
+	//const float GetAccForce();
+	void SetBreakForce(const float breakForce);
+	//const float GetBreakForce();
 	const float GetMass();
 
-	virtual void Accelarate(float) const = 0;
-	virtual void Brake() const = 0;
-	virtual void Turn(float) const = 0;
-	virtual void UpdatePosFacing(float) const = 0;
+	//Virtual overrides
+	void SetCoordinates(const std::vector<float>& c);
+	void SetOrientation(const std::vector<float>& o);
+
+	//virtual Methods
+	virtual void Accelarate(const float strength) const = 0;
+	virtual void Brake(const float strength) const = 0;
+	virtual void Turn(const float direction) const = 0;
+	virtual void Update(const float dt) const = 0;
 
 	//Constructors
 	//Standardconstructor should only be used for testing
 	ControllableObj(QObject* parent); // = delete;
-	ControllableObj(QObject* parent, std::vector<float> c, std::vector<float> f);
+	ControllableObj(QObject* parent, std::vector<float>& coordinates, std::vector<float>& orientation);
 	~ControllableObj();
 };
 

@@ -6,23 +6,23 @@ const std::vector<float>& Objects::GetCoordinates(){
 	return Coordinates;
 }
 
-const std::vector<float>& Objects::GetFacing()
+const std::vector<float>& Objects::GetOrientation()
 {
-	return Facing;
+	return Orientation;
 }
 
 //Constructor
 Objects::Objects(QObject* parent) 
 	: QObject(parent){}
 
-Objects::Objects(QObject* parent, std::vector<float> c, std::vector<float> f)
+Objects::Objects(QObject* parent, std::vector<float>& coordinates, std::vector<float>& orientation = (0, 90))
 	: QObject(parent){
 	for (auto i = 0; i < c.size(); i++) {
-		Coordinates[i] = c[i];
+		Coordinates[i] = coordinates[i];
 	}
 
 	for (auto i = 0; i < a.size(); i++) {
-		Facing[i] = f[i];
+		Orientation[i] = orientation[i];
 	}
 }
 

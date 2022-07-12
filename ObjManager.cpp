@@ -22,10 +22,9 @@ void ObjManager::Step(float dt)
 
 		cObj->SetVelocity(cObj->GetVelocity() + cObj->GetForce() / cObj->GetMass() * dt);
 
-		cObj->UpdatePosFacing(dt);
+		cObj->Update(dt);
 
-		//Need new function UpdateForce
-		//cObj->SetForce(std::vector<float>(0, 0, 0));
+		cObj->SetForce(std::vector<float>(0, 0, 0));
 	}
 }
 
